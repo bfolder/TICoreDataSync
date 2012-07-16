@@ -49,7 +49,6 @@
     NSError *anyError = nil;
     BOOL success = YES;
     NSString *filePath = [[self localWholeStoreFileLocation] path];
-    
     if( [self shouldUseEncryption] ) {
         BOOL isDir;
         NSAssert( [self.fileManager fileExistsAtPath:filePath isDirectory:&isDir] && !isDir, @"Encryption not supported when whole store is directory.");
