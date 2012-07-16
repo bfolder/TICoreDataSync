@@ -20,8 +20,7 @@
 
 -(NSURL *)cloudStoreURL
 {
-    static NSString * const ubiquityId = @"P7BXV6PHLD.com.mentalfaculty.Notebook";
-    NSURL *ubiquitousURL = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:ubiquityId];
+    NSURL *ubiquitousURL = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier: nil];
     NSURL *storeURL = [ubiquitousURL URLByAppendingPathComponent:@"SyncData"];
     return storeURL;
 }
