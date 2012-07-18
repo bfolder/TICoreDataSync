@@ -239,6 +239,9 @@
 
 - (BOOL)fileExistsAtPath:(NSString *)fromPath
 {
+    if(!fromPath)
+        return NO;
+    
     NSURL *fromURL = [NSURL fileURLWithPath:fromPath];
     __block BOOL result = NO;
     [self.fileCoordinator coordinateReadingItemAtURL:fromURL options:NSFileCoordinatorReadingWithoutChanges error:NULL byAccessor:^(NSURL *newURL) {
@@ -249,6 +252,9 @@
 
 - (BOOL)createDirectoryAtPath:(NSString *)path withIntermediateDirectories:(BOOL)createIntermediates attributes:(NSDictionary *)attributes error:(NSError **)error
 {
+    if(!path)
+        return NO;
+    
     NSURL *url = [NSURL fileURLWithPath:path];
     __block BOOL success = NO;
     __block NSError *anyError = nil;

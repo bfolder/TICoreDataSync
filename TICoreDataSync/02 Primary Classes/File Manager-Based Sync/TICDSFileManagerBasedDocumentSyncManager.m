@@ -65,7 +65,7 @@
         
         success = [_directoryWatcher watchDirectory:eachPath error:&anyError];
         if( !success ) {
-            TICDSLog(TICDSLogVerbosityErrorsOnly, @"Failed to watch %@ client's SyncChanges directory");
+            TICDSLog(TICDSLogVerbosityErrorsOnly, @"Failed to watch client's SyncChanges directory");
             return;
         }
     }
@@ -77,6 +77,16 @@
         TICDSLog(TICDSLogVerbosityErrorsOnly, @"Failed to schedule directory watcher on the run loop");
         return;
     }
+}
+
+- (void)disableAutomaticSynchronizationAfterChangesDetectedFromOtherClients
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name: kTIKQDirectoryWatcherObservedDirectoryActivityNotification object: _directoryWatcher];
+    if(_directoryWatcher)
+        [_directoryWatcher release], _directoryWatcher = nil;
+    
+    if( _watchedClientDirectoryIdentifiers )
+        [_watchedClientDirectoryIdentifiers release], _watchedClientDirectoryIdentifiers = nil;
 }
 
 - (void)directoryContentsDidChange:(NSNotification *)aNotification

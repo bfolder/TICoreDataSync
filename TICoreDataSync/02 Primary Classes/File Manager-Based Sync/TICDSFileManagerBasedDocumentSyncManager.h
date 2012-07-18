@@ -30,6 +30,9 @@
 /** Configures the FileManager-based document sync manager to watch for changes uploaded by other clients, and initiate a sync operation automatically when new changes are detected. */
 - (void)enableAutomaticSynchronizationAfterChangesDetectedFromOtherClients;
 
+/** Configures the FileManager-based document sync manager to stop watch for changes. */
+- (void)disableAutomaticSynchronizationAfterChangesDetectedFromOtherClients;
+
 /** @name Properties */
 
 /** A `TIKQDirectoryWatcher` used to watch for changes in the `SyncChanges` directories for this document. */
